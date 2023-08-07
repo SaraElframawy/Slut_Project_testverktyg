@@ -5,6 +5,10 @@ import java.util.Date;
 
 @Entity
 public class LapTime {
+    @Override
+    public String toString() {
+        return Double.toString(LapTime) ;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
