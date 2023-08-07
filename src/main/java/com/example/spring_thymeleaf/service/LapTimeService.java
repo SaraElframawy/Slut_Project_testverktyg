@@ -4,6 +4,7 @@ import com.example.spring_thymeleaf.entities.LapTime;
 import com.example.spring_thymeleaf.repo.LapTimeRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,14 @@ public class LapTimeService {
         List<LapTime> lapTimes = lapTimeRepo.findAll();
        // lapTimes.stream().sorted().collect(Collectors.toList());
         // TODO: Sort and limit to only 5 best times
-        return  lapTimes;
+        //in the case of ordering a class we use method to verify
+        // that those values "laptimes" are going to be in double so sort them in descending order
+        lapTimes.sort(Comparator.comparingDouble(LapTime::getLapTime));
+        //Here i create a list of the best time lap that will take
+        // the sorted lap time and put it in a list again with limit 6
+
+        List<LapTime> bestLapTime = lapTimes.stream().limit(5).collect(Collectors.toList());
+        return  bestLapTime;
     }
 
     public LapTime findById(int id) {

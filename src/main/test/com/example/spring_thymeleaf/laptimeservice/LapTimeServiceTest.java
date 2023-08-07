@@ -1,4 +1,6 @@
+
 package com.example.spring_thymeleaf.laptimeservice;
+
 
 import com.example.spring_thymeleaf.entities.LapTime;
 import com.example.spring_thymeleaf.repo.LapTimeRepo;
@@ -15,12 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 
 
+
 @ExtendWith(MockitoExtension.class)
+
 
 
 public class LapTimeServiceTest {
@@ -43,38 +48,43 @@ public class LapTimeServiceTest {
     public void findLapTimes_test(){
      //given
         List<LapTime> lapTimes = new ArrayList<>();
-        lapTimes.add(new LapTime(1));
-        lapTimes.add(new LapTime(2));
-        lapTimes.add(new LapTime(3));
-        lapTimes.add(new LapTime(4));
-        lapTimes.add(new LapTime(5));
         lapTimes.add(new LapTime(6));
+        lapTimes.add(new LapTime(25));
+        LapTime lapTime2 = new LapTime(2);
+        lapTimes.add(lapTime2);
+        LapTime lapTime3 = new LapTime(3);
+        lapTimes.add(lapTime3);
+        LapTime lapTime4 = new LapTime(4);
+        lapTimes.add(lapTime4);
+        LapTime lapTime1 = new LapTime(1);
+        lapTimes.add(lapTime1);
+        LapTime lapTime5 = new LapTime(4);
+        lapTimes.add(lapTime5);
+        lapTimes.add(new LapTime(25));
 
-       /* Comparator<LapTime> idLapTime = new Comparator<LapTime>() {
-            @Override
-            public int compare(LapTime o1, LapTime o2) {
-                if (o1.getId() > o2.getId()) {
-                    return -1;
-                } else if (o1.getId()<o2.getId()){
-                    return 1;
 
-                }
-                else{ return 0;}
-            }
-        }*/
+        List<LapTime> expectedList = new ArrayList<>();
+        expectedList.add(lapTime1);
+        expectedList.add(lapTime2);
+        expectedList.add(lapTime3);
+        expectedList.add(lapTime4);
+        expectedList.add(lapTime5);
+
+
 
 
 
 
          //when
         when(lapTimeRepo.findAll()).thenReturn(lapTimes);
-        List<LapTime>lapTime=lapTimeService.findLapTimes();
+        List<LapTime>resulTimeList=lapTimeService.findLapTimes();
 
 
         //then
         System.out.println("Laptimes: ");
-        System.out.println(lapTime.toString());
-        Assertions.assertEquals(lapTime,lapTimes);
+        System.out.println(resulTimeList.toString());
+        Assertions.assertIterableEquals(expectedList, resulTimeList);
+
 
 
     }
@@ -84,9 +94,11 @@ public class LapTimeServiceTest {
         int lapTimeID = 1;
         //when
         when(lapTimeRepo.findById(lapTimeID)).thenReturn(Optional.empty());
+        //then
         assertThrows(RuntimeException.class,()->lapTimeService.findById(1));
 
     }
+
     @Test
     public void deleteById_validId_deletesLapTime() {
         // given
@@ -97,7 +109,7 @@ public class LapTimeServiceTest {
         lapTimeService.deleteById(lapTimeId);
 
         // then
-        verify(lapTimeRepo, times(1)).deleteById(lapTimeId);
+        verify(lapTimeRepo, times(1)).deleteById(lapTimeId); //denna från gamla project
     }
 
 
