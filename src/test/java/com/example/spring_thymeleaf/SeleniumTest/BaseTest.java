@@ -21,7 +21,7 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-        //options.addArguments("--headless"); // Run Chrome in headless mode (without GUI)
+       // options.addArguments("--headless"); // Run Chrome in headless mode (without GUI)
         driver = new ChromeDriver(options);
         driver.get(baseURL);
         driver.manage().window().maximize();

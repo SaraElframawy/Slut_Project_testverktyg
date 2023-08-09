@@ -3,6 +3,7 @@ package com.example.spring_thymeleaf.laptimeservice;
 import com.example.spring_thymeleaf.entities.LapTime;
 import com.example.spring_thymeleaf.repo.LapTimeRepo;
 import com.example.spring_thymeleaf.service.LapTimeService;
+import io.qase.api.QaseClient;
 import io.qase.api.annotation.QaseTitle;
 import io.qase.api.annotation.Step;
 import org.junit.jupiter.api.Assertions;
@@ -20,7 +21,6 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-
 public class LapTimeServiceTest {
     @Mock
     LapTimeRepo lapTimeRepo;
@@ -37,6 +37,7 @@ public class LapTimeServiceTest {
     @Test
     @QaseTitle("Testing the array list of time lap whether it is in descending order")
     public void findLapTimes_test(){
+        QaseClient.getApiClient().setDebugging(true);
      //given
         List<LapTime> lapTimes = new ArrayList<>();
         lapTimes.add(new LapTime(6));
@@ -70,7 +71,7 @@ public class LapTimeServiceTest {
 
     }
     @Test
-    @Step("Testing the exception of invalid ID")
+    @QaseTitle("Testing the exception of invalid ID")
     public void findByID_invalidID(){
         //given
         int lapTimeID = 1;
@@ -82,7 +83,7 @@ public class LapTimeServiceTest {
     }
 
     @Test
-    @Step("Verify deleting lap time function")
+    @QaseTitle("Verify deleting lap time function")
     public void deleteById_validId_deletesLapTime() {
         // given
         int lapTimeId = 1;
