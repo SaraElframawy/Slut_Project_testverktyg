@@ -1,4 +1,4 @@
-package Seleniumpages;
+package com.example.spring_thymeleaf.Seleniumpages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

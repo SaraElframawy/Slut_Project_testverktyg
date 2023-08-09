@@ -1,16 +1,13 @@
-package seleniumTest;
+package com.example.spring_thymeleaf.SeleniumTest;
 
-import Seleniumpages.AddNewLapTime;
-import Seleniumpages.LandingPage;
+import com.example.spring_thymeleaf.Seleniumpages.AddNewLapTime;
+import io.qase.api.annotation.QaseTitle;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
 
 
-@SpringBootTest(classes = seleniumTest.AddNewLapTimeTest.class)
-@DirtiesContext
+//@SpringBootTest(classes = SeleniumTest.AddNewLapTimeTest.class)
+//@DirtiesContext
 public class AddNewLapTimeTest extends BaseTest{
    AddNewLapTime addNewLapTime;
 
@@ -19,6 +16,7 @@ public class AddNewLapTimeTest extends BaseTest{
         landingPage = new LandingPage(driver); // Initialize the LandingPage instance
     }*/
     @Test
+    @QaseTitle("add new lap time on localhost project")
     public void testLandingPage() {
 
         addNewLapTime = landingPage.addNewLapTimeButton();
@@ -26,7 +24,7 @@ public class AddNewLapTimeTest extends BaseTest{
        addNewLapTime.inputLapTimeSave(input);
        addNewLapTime.saveButtonLapTime();
        String status=addNewLapTime.getTheTextOfTheLapTime();
-       String expected="Varvtid:2.0";
+       String expected="Varvtid: 2.0";
          Assertions.assertEquals(status,expected);
     }
 

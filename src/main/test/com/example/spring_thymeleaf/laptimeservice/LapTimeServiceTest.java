@@ -3,6 +3,8 @@ package com.example.spring_thymeleaf.laptimeservice;
 import com.example.spring_thymeleaf.entities.LapTime;
 import com.example.spring_thymeleaf.repo.LapTimeRepo;
 import com.example.spring_thymeleaf.service.LapTimeService;
+import io.qase.api.annotation.QaseTitle;
+import io.qase.api.annotation.Step;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,17 +17,9 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
-/**
- @author Sara Elframawy
- */
-
-
-
 
 
 @ExtendWith(MockitoExtension.class)
-
-
 
 public class LapTimeServiceTest {
     @Mock
@@ -40,10 +34,8 @@ public class LapTimeServiceTest {
 
     }
 
-
-
-
     @Test
+    @QaseTitle("Testing the array list of time lap whether it is in descending order")
     public void findLapTimes_test(){
      //given
         List<LapTime> lapTimes = new ArrayList<>();
@@ -78,6 +70,7 @@ public class LapTimeServiceTest {
 
     }
     @Test
+    @Step("Testing the exception of invalid ID")
     public void findByID_invalidID(){
         //given
         int lapTimeID = 1;
@@ -89,6 +82,7 @@ public class LapTimeServiceTest {
     }
 
     @Test
+    @Step("Verify deleting lap time function")
     public void deleteById_validId_deletesLapTime() {
         // given
         int lapTimeId = 1;
