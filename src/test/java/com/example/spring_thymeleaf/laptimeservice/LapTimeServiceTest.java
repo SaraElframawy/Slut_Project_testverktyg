@@ -82,8 +82,9 @@ public class LapTimeServiceTest {
 
     }
 
-    @Test
     @QaseTitle("Verify deleting lap time function")
+    @Test
+
     public void deleteById_validId_deletesLapTime() {
         // given
         int lapTimeId = 1;

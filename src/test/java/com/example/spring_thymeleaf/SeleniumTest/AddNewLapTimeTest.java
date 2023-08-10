@@ -17,7 +17,7 @@ public class AddNewLapTimeTest extends BaseTest{
         landingPage = new LandingPage(driver); // Initialize the LandingPage instance
     }*/
     @Test
-    @Disabled
+
     @QaseTitle("add new lap time on localhost project")
     public void testLandingPage() {
 
