@@ -29,7 +29,6 @@ public class LapTimeServiceTest {
 
     @BeforeEach
     public void setup(){
-        //MockitoAnnotations.openMocks(this);
         lapTimeService = new LapTimeService(lapTimeRepo);
 
     }
@@ -67,8 +66,6 @@ public class LapTimeServiceTest {
         System.out.println(resulTimeList.toString());
         Assertions.assertIterableEquals(expectedList, resulTimeList);
 
-
-
     }
     @Test
     @QaseTitle("Testing the exception of invalid ID")
@@ -84,7 +81,6 @@ public class LapTimeServiceTest {
 
     @QaseTitle("Verify deleting lap time function")
     @Test
-
     public void deleteById_validId_deletesLapTime() {
         // given
         int lapTimeId = 1;
